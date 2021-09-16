@@ -211,6 +211,36 @@
                         <li><a href="{{ route('events.create') }}">Create</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-coffee"></i><span class="nav-text">Reservations</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('reservations.index') }}">Index</a></li>
+                        <li><a href="{{ route('reservations.create') }}">Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-coffee"></i><span class="nav-text">Reviews</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('reviews.index') }}">Index</a></li>
+                        <li><a href="{{ route('reviews.create') }}">Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ route('album.edit') }}" aria-expanded="false">
+                        <i class="icon icon-globe-2"></i>
+                        <span class="nav-text">Album</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-coffee"></i><span class="nav-text">Chefs</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('chefs.index') }}">Index</a></li>
+                        <li><a href="{{ route('chefs.create') }}">Create</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

@@ -33,5 +33,16 @@ Route::prefix('cms')->group(function (){
   Route::get('event/list',[\App\Http\Controllers\cms\EventController::class, 'getEvents'])->name('event.list');
   Route::post('events/{event}/update', [\App\Http\Controllers\cms\EventController::class, 'update']);
 
+  Route::resource('reservations', \App\Http\Controllers\cms\ReservationController::class);
+  Route::get('reservation/list',[\App\Http\Controllers\cms\ReservationController::class, 'getReservations'])->name('reservation.list');
 
+  Route::resource('reviews', \App\Http\Controllers\cms\ReviwController::class);
+  Route::get('review/list',[\App\Http\Controllers\cms\ReviwController::class, 'getReviews'])->name('review.list');
+  Route::post('reviews/{review}/update', [\App\Http\Controllers\cms\ReviwController::class, 'update']);
+
+  Route::get('album', [\App\Http\Controllers\cms\AlbumController::class, 'edit'])->name('album.edit');
+  Route::post('image/store', [\App\Http\Controllers\cms\ImageController::class, 'store'])->name('image.store');
+  Route::delete('image/remove', [\App\Http\Controllers\cms\ImageController::class, 'remove'])->name('image.remove');
+
+  Route::resource('chefs', \App\Http\Controllers\cms\ChefController::class);
 });

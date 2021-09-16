@@ -162,10 +162,9 @@ class MealController extends Controller
             $meal->save();
             $meal = $meal->refresh();
             if ($request->hasFile('image')){
-                $image = new Image();
                 $this->uploadFile($request->file('image'), 'images/meals/', 'public', 'meal_'. $request->file('image')->getBasename() . time());
-                $image->path = $this->filePath;
-                $meal->image()->save($image);
+                $meal->image->path = $this->filePath;
+                $meal->image->save();
             }
             $isSaved = $meal->save();
             return response()->json(['message' => $isSaved ? "Meal Updated successfully" : "Failed to Update Meal"], $isSaved ? 200:400);

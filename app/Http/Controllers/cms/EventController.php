@@ -137,10 +137,9 @@ class EventController extends Controller
             $event->save();
             $event = $event->refresh();
             if ($request->hasFile('image')){
-                $image = $event->image->first();
                 $this->uploadFile($request->file('image'), 'images/events/', 'public', 'event_'. $request->file('image')->getBasename() . time());
-                $image->path = $this->filePath;
-                $event->image()->save($image);
+                $event->image->path = $this->filePath;
+                $event->image->save();
             }
             $isSaved = $event->save();
             return response()->json(['message' => $isSaved ? "Event Updated successfully" : "Failed to Update Event"], $isSaved ? 200:400);
