@@ -1,6 +1,6 @@
 @extends('cms.parent')
 
-@section('title', 'index Chefs')
+@section('title', 'index Messages')
 
 @section('styles')
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Chefs</h4>
+                        <h4 class="card-title">Index Messages</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -22,7 +22,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Degree</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
@@ -35,7 +37,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Degree</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
@@ -64,11 +68,13 @@
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('chef.list') }}",
+                ajax: "{{ route('messages.list') }}",
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'degree', name: 'degree'},
+                    {data: 'email', name: 'email'},
+                    {data: 'subject', name: 'subject'},
+                    {data: 'message', name: 'message'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     {
@@ -92,7 +98,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    destroy('/panel/cms/chefs/'+id);
+                    destroy('/panel/cms/settings/'+id);
                 }
             });
         }

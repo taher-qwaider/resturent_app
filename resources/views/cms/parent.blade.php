@@ -80,80 +80,80 @@
                     </div>
 
                     <ul class="navbar-nav header-right">
-                        <li class="nav-item dropdown notification_dropdown">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <i class="mdi mdi-bell"></i>
-                                <div class="pulse-css"></div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="list-unstyled">
-                                    <li class="media dropdown-item">
-                                        <span class="success"><i class="ti-user"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="danger"><i class="ti-bookmark"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="primary"><i class="ti-heart"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                    <li class="media dropdown-item">
-                                        <span class="success"><i class="ti-image"></i></span>
-                                        <div class="media-body">
-                                            <a href="#">
-                                                <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <span class="notify-time">3:20 am</span>
-                                    </li>
-                                </ul>
-                                <a class="all-notification" href="#">See all notifications <i
-                                        class="ti-arrow-right"></i></a>
-                            </div>
-                        </li>
+{{--                        <li class="nav-item dropdown notification_dropdown">--}}
+{{--                            <a class="nav-link" href="#" role="button" data-toggle="dropdown">--}}
+{{--                                <i class="mdi mdi-bell"></i>--}}
+{{--                                <div class="pulse-css"></div>--}}
+{{--                            </a>--}}
+{{--                            <div class="dropdown-menu dropdown-menu-right">--}}
+{{--                                <ul class="list-unstyled">--}}
+{{--                                    <li class="media dropdown-item">--}}
+{{--                                        <span class="success"><i class="ti-user"></i></span>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <a href="#">--}}
+{{--                                                <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully--}}
+{{--                                                </p>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <span class="notify-time">3:20 am</span>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="media dropdown-item">--}}
+{{--                                        <span class="primary"><i class="ti-shopping-cart"></i></span>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <a href="#">--}}
+{{--                                                <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <span class="notify-time">3:20 am</span>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="media dropdown-item">--}}
+{{--                                        <span class="danger"><i class="ti-bookmark"></i></span>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <a href="#">--}}
+{{--                                                <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.--}}
+{{--                                                </p>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <span class="notify-time">3:20 am</span>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="media dropdown-item">--}}
+{{--                                        <span class="primary"><i class="ti-heart"></i></span>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <a href="#">--}}
+{{--                                                <p><strong>David</strong> purchased Light Dashboard 1.0.</p>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <span class="notify-time">3:20 am</span>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="media dropdown-item">--}}
+{{--                                        <span class="success"><i class="ti-image"></i></span>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <a href="#">--}}
+{{--                                                <p><strong> James.</strong> has added a<strong>customer</strong> Successfully--}}
+{{--                                                </p>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <span class="notify-time">3:20 am</span>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                                <a class="all-notification" href="#">See all notifications <i--}}
+{{--                                        class="ti-arrow-right"></i></a>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                 <i class="mdi mdi-account"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="./app-profile.html" class="dropdown-item">
+                                <a href="#" class="dropdown-item">
                                     <i class="icon-user"></i>
                                     <span class="ml-2">Profile </span>
                                 </a>
-                                <a href="./email-inbox.html" class="dropdown-item">
-                                    <i class="icon-envelope-open"></i>
-                                    <span class="ml-2">Inbox </span>
-                                </a>
-                                <a href="./page-login.html" class="dropdown-item">
+{{--                                <a href="./email-inbox.html" class="dropdown-item">--}}
+{{--                                    <i class="icon-envelope-open"></i>--}}
+{{--                                    <span class="ml-2">Inbox </span>--}}
+{{--                                </a>--}}
+                                <a href="{{ route('logout') }}" class="dropdown-item">
                                     <i class="icon-key"></i>
                                     <span class="ml-2">Logout </span>
                                 </a>
@@ -199,13 +199,13 @@
                 </li>
                 <li>
                     <a href="{{ route('meal.spacial') }}" aria-expanded="false">
-                        <i class="icon icon-globe-2"></i>
+                        <i class="icon icon-heart-2"></i>
                         <span class="nav-text">Spacial</span>
                     </a>
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-coffee"></i><span class="nav-text">Events</span></a>
+                        <i class="icon icon-smile"></i><span class="nav-text">Events</span></a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('events.index') }}">Index</a></li>
                         <li><a href="{{ route('events.create') }}">Create</a></li>
@@ -221,7 +221,7 @@
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-coffee"></i><span class="nav-text">Reviews</span></a>
+                        <i class="icon icon-edit-72"></i><span class="nav-text">Reviews</span></a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('reviews.index') }}">Index</a></li>
                         <li><a href="{{ route('reviews.create') }}">Create</a></li>
@@ -229,19 +229,41 @@
                 </li>
                 <li>
                     <a href="{{ route('album.edit') }}" aria-expanded="false">
-                        <i class="icon icon-globe-2"></i>
+                        <i class="icon icon-puzzle-10"></i>
                         <span class="nav-text">Album</span>
                     </a>
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-coffee"></i><span class="nav-text">Chefs</span></a>
+                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Chefs</span></a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('chefs.index') }}">Index</a></li>
                         <li><a href="{{ route('chefs.create') }}">Create</a></li>
                     </ul>
                 </li>
-
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Social Media</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('socialMedias.index') }}">Index</a></li>
+                        <li><a href="{{ route('socialMedias.create') }}">Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-settings"></i><span class="nav-text">Settings</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('settings.subject.index', 'why_us') }}">Why us</a></li>
+                        <li><a href="{{ route('settings.subject.index', 'about_us') }}">About us</a></li>
+                        <li><a href="{{ route('settings.create') }}">Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ route('messages.index') }}" aria-expanded="false">
+                        <i class="icon icon-email-84"></i>
+                        <span class="nav-text">Messages</span>
+                    </a>
+                </li>
             </ul>
         </div>
 

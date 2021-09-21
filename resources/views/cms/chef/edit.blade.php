@@ -1,6 +1,6 @@
 @extends('cms.parent')
 
-@section('title', 'Edit Event')
+@section('title', 'Edit Chef')
 
 @section('styles')
 
@@ -27,24 +27,19 @@
             <div class="col-xl-6 col-xxl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Edit Event</h4>
+                        <h4 class="card-title">Edit Chef</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
                             <form id="create_form">
-                                @foreach(config('app.available_locales') as $local)
-                                    <div class="form-group">
-                                        <label for="title_{{ $local }}">Title({{ $local }})</label>
-                                        <input type="text" id="title_{{ $local }}" class="form-control input-rounded" value="{{ $event->translate($local)->title }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="desc_{{ $local }}">Description ({{ $local }})</label>
-                                        <textarea type="text" id="desc_{{ $local }}" class="form-control input-rounded" >{{ $event->translate($local)->desc }}</textarea>
-                                    </div>
-                                @endforeach
+
                                 <div class="form-group">
-                                    <label for="price">Price</label>
-                                    <input type="number" id="price" class="form-control input-rounded" value="{{ $event->price }}">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" class="form-control input-rounded" value="{{ $chef->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="degree">Degree</label>
+                                    <input type="text" id="degree" class="form-control input-rounded" value="{{ $chef->degree }}">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
@@ -53,11 +48,28 @@
                                         <label class="custom-file-label">Choose Image</label>
                                     </div>
                                 </div>
+                                <div class="repeater">
+                                    <div data-repeater-list="group">
+                                        @foreach($chef->socials as $social)
+                                            <div data-repeater-item class="col mt-2 mt-sm-0">
+
+                                                <label name="name" value="A">Name</label>
+                                                <input type="text" name="name" value="{{ $social->name }}"/>
+
+                                                <label name="url" value="A">URL</label>
+                                                <input type="text" name="url" value="{{ $social->url }}"/>
+
+                                                <input data-repeater-delete type="button" class="btn btn-danger" value="Delete"/>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <input data-repeater-create type="button" class="btn btn-success" value="Add"/>
+                                </div>
                             </form>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-primary" onclick="performStore()" >Save</button>
+                        <button type="button" class="btn btn-primary" onclick="performStore({{ $chef->id }})" >Save</button>
                     </div>
                 </div>
             </div>
@@ -66,18 +78,43 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="{{ asset('js/src/jquery.input.js') }}"></script>
+    <script src="{{ asset('js/src/jquery.repeater.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.repeater').repeater({
+                initEmpty: false,
+                defaultValues: {
+                    // 'text-input': ''
+                },
+                show: function () {
+                    $(this).slideDown();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                },
+                ready: function (setIndexes) {
+                    // $dragAndDrop.on('drop', setIndexes);
+                },
+                isFirstItemUndeletable: false
+            })
+        });
+    </script>
     <script src="{{ asset('js/crud.js') }}"></script>
     <script>
-        function performStore() {
+        function performStore(id) {
             var formData = new FormData();
-            @foreach(config('app.available_locales') as $local)
-                formData.append('title_{{ $local }}', document.getElementById('title_'+'{{ $local }}').value);
-                formData.append('desc_{{ $local }}', document.getElementById('desc_'+'{{ $local }}').value);
-            @endforeach
-            formData.append('price', document.getElementById('price').value);
-            formData.append('image', document.getElementById('image').files[0]);
 
-            store('/panel/cms/events/'+{{ $event->id }}+'/update', formData);
+            formData.append('name', document.getElementById('name').value);
+            formData.append('degree', document.getElementById('degree').value);
+            formData.append('image', document.getElementById('image').files[0]);
+            let values =$('.repeater').repeaterVal().group;
+            for (var i=0; i<values.length; i++){
+                formData.append('socials['+i+'][name]', $('.repeater').repeaterVal().group[i].name);
+                formData.append('socials['+i+'][url]', $('.repeater').repeaterVal().group[i].url);
+            }
+
+            store('/panel/cms/chefs/'+id+'/update', formData);
         }
     </script>
 @endsection

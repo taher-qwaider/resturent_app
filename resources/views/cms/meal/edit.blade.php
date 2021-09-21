@@ -82,8 +82,8 @@
         function performStore() {
             var formData = new FormData();
             @foreach(config('app.available_locales') as $local)
-            formData.append('name_{{ $local }}', document.getElementById('name_'+'{{ $local }}').value);
-            formData.append('desc_{{ $local }}', document.getElementById('desc_'+'{{ $local }}').value);
+                formData.append('name_{{ $local }}', document.getElementById('name_'+'{{ $local }}').value);
+                formData.append('desc_{{ $local }}', document.getElementById('desc_'+'{{ $local }}').value);
             @endforeach
             formData.append('price', document.getElementById('price').value);
             formData.append('category', document.getElementById('category').value);
