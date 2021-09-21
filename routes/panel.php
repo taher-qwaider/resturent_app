@@ -58,7 +58,24 @@ Route::prefix('cms')->middleware('auth:user')->group(function (){
   Route::resource('socialMedias', \App\Http\Controllers\cms\SocialMediaController::class);
   Route::get('socialMedia/list',[\App\Http\Controllers\cms\SocialMediaController::class, 'getSocialMedia'])->name('socialMedias.list');
 
+  Route::resource('users', \App\Http\Controllers\cms\UserController::class);
+  Route::get('user/list',[\App\Http\Controllers\cms\UserController::class, 'getUsers'])->name('users.list');
+  Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update']);
+  Route::get('user/{user}/permissions',[\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'index']);
+  Route::post('user/{user}/permissions',[\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'store']);
+
   Route::get('logout', [\App\Http\Controllers\cms\auth\AuthController::class, 'logout'])->name('logout');
+
+  Route::resource('permissions', \App\Http\Controllers\cms\spatie\PermissionController::class);
+  Route::get('permission/list',[\App\Http\Controllers\cms\spatie\PermissionController::class, 'getPermissions'])->name('permissions.list');
+
+  Route::resource('roles', \App\Http\Controllers\cms\spatie\RoleController::class);
+  Route::get('role/list',[\App\Http\Controllers\cms\spatie\RoleController::class, 'getRoles'])->name('roles.list');
+
+  Route::get('role/{role}/permissions',[\App\Http\Controllers\cms\spatie\RolePermissionController::class, 'index']);
+  Route::post('role/{role}/permissions',[\App\Http\Controllers\cms\spatie\RolePermissionController::class, 'store']);
+
+
 });
 Route::prefix('cms')->middleware('guest')->group(function (){
    Route::get('login', [\App\Http\Controllers\cms\auth\AuthController::class, 'getView'])->name('login.view');

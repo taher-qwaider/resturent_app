@@ -181,6 +181,16 @@
                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Users</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('users.index') }}">Index</a></li>
+                        <li><a href="{{ route('users.create') }}">Create</a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-label">Content Management</li>
                 <li><a class="has-arrow" href="#" aria-expanded="false"><i
                             class="icon icon-app-store"></i><span class="nav-text">Categories</span></a>
@@ -263,6 +273,24 @@
                         <i class="icon icon-email-84"></i>
                         <span class="nav-text">Messages</span>
                     </a>
+                </li>
+
+                <li class="nav-label">Permissions & Roles</li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Permissions</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('permissions.index') }}">Index</a></li>
+                        <li><a href="{{ route('permissions.create') }}">Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="#" aria-expanded="false">
+                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Roles</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('roles.index') }}">Index</a></li>
+                        <li><a href="{{ route('roles.create') }}">Create</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
