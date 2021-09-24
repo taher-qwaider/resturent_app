@@ -182,116 +182,190 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Users</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('users.index') }}">Index</a></li>
-                        <li><a href="{{ route('users.create') }}">Create</a></li>
-                    </ul>
-                </li>
+                @canany(['create-users', 'read-users'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-users-mm-2"></i><span class="nav-text">Users</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-users')
+                                <li><a href="{{ route('users.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-users')
+                                <li><a href="{{ route('users.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
 
                 <li class="nav-label">Content Management</li>
-                <li><a class="has-arrow" href="#" aria-expanded="false"><i
-                            class="icon icon-app-store"></i><span class="nav-text">Categories</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('categories.index') }}">Index</a></li>
-                        <li><a href="{{ route('categories.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-coffee"></i><span class="nav-text">Meals</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('meals.index') }}">Index</a></li>
-                        <li><a href="{{ route('meals.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ route('meal.spacial') }}" aria-expanded="false">
-                        <i class="icon icon-heart-2"></i>
-                        <span class="nav-text">Spacial</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-smile"></i><span class="nav-text">Events</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('events.index') }}">Index</a></li>
-                        <li><a href="{{ route('events.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-coffee"></i><span class="nav-text">Reservations</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('reservations.index') }}">Index</a></li>
-                        <li><a href="{{ route('reservations.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-edit-72"></i><span class="nav-text">Reviews</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('reviews.index') }}">Index</a></li>
-                        <li><a href="{{ route('reviews.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ route('album.edit') }}" aria-expanded="false">
-                        <i class="icon icon-puzzle-10"></i>
-                        <span class="nav-text">Album</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Chefs</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('chefs.index') }}">Index</a></li>
-                        <li><a href="{{ route('chefs.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Social Media</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('socialMedias.index') }}">Index</a></li>
-                        <li><a href="{{ route('socialMedias.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-settings"></i><span class="nav-text">Settings</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('settings.subject.index', 'why_us') }}">Why us</a></li>
-                        <li><a href="{{ route('settings.subject.index', 'about_us') }}">About us</a></li>
-                        <li><a href="{{ route('settings.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ route('messages.index') }}" aria-expanded="false">
-                        <i class="icon icon-email-84"></i>
-                        <span class="nav-text">Messages</span>
-                    </a>
-                </li>
+                @canany(['create-categories', 'read-categories'])
+                    <li><a class="has-arrow" href="#" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Categories</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-categories')
+                                <li><a href="{{ route('categories.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-categories')
+                                <li><a href="{{ route('categories.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @canany(['create-meals', 'read-meals'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-coffee"></i><span class="nav-text">Meals</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-meals')
+                                <li><a href="{{ route('meals.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-meals')
+                                <li><a href="{{ route('meals.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                    @can('read-meals')
+                        <li>
+                            <a href="{{ route('meal.spacial') }}" aria-expanded="false">
+                                <i class="icon icon-heart-2"></i>
+                                <span class="nav-text">Spacial</span>
+                            </a>
+                        </li>
+                    @endcan
+                @endcanany
+                @canany(['create-events', 'read-events'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-smile"></i><span class="nav-text">Events</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-events')
+                                <li><a href="{{ route('events.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-events')
+                                <li><a href="{{ route('events.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @canany(['create-reservations', 'read-reservations'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-coffee"></i><span class="nav-text">Reservations</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-reservations')
+                                <li><a href="{{ route('reservations.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-reservations')
+                                <li><a href="{{ route('reservations.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @canany(['create-reviews', 'read-reviews'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-edit-72"></i><span class="nav-text">Reviews</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-reviews')
+                                <li><a href="{{ route('reviews.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-reviews')
+                                <li><a href="{{ route('reviews.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @can('edit-album')
+                    <li>
+                        <a href="{{ route('album.edit') }}" aria-expanded="false">
+                            <i class="icon icon-puzzle-10"></i>
+                            <span class="nav-text">Album</span>
+                        </a>
+                    </li>
+                @endcan
+                @canany(['create-chefs', 'read-chefs'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-users-mm-2"></i><span class="nav-text">Chefs</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-chefs')
+                                <li><a href="{{ route('chefs.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-chefs')
+                                <li><a href="{{ route('chefs.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @canany(['read-social-media', 'create-social-media'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-users-mm-2"></i><span class="nav-text">Social Media</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-social-media')
+                                <li><a href="{{ route('socialMedias.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-social-media')
+                                <li><a href="{{ route('socialMedias.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @canany(['create-settings', 'read-settings'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-settings"></i><span class="nav-text">Settings</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-settings')
+                                <li><a href="{{ route('settings.subject.index', 'general') }}">General</a></li>
+                                <li><a href="{{ route('settings.subject.index', 'Maps') }}">Maps</a></li>
+                                <li><a href="{{ route('settings.subject.index', 'why_us') }}">Why us</a></li>
+                                <li><a href="{{ route('settings.subject.index', 'about_us') }}">About us</a></li>
+                            @endcan
+                            @can('create-settings')
+                                <li><a href="{{ route('settings.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @can('read-messages')
+                    <li>
+                        <a href="{{ route('messages.index') }}" aria-expanded="false">
+                            <i class="icon icon-email-84"></i>
+                            <span class="nav-text">Messages</span>
+                        </a>
+                    </li>
+                @endcan
 
                 <li class="nav-label">Permissions & Roles</li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Permissions</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('permissions.index') }}">Index</a></li>
-                        <li><a href="{{ route('permissions.create') }}">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false">
-                        <i class="icon icon-users-mm-2"></i><span class="nav-text">Roles</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('roles.index') }}">Index</a></li>
-                        <li><a href="{{ route('roles.create') }}">Create</a></li>
-                    </ul>
-                </li>
+                @canany(['create-permissions', 'read-permissions'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-users-mm-2"></i><span class="nav-text">Permissions</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-permissions')
+                                <li><a href="{{ route('permissions.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-permissions')
+                                <li><a href="{{ route('permissions.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+                @canany(['create-roles', 'read-roles'])
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <i class="icon icon-users-mm-2"></i><span class="nav-text">Roles</span></a>
+                        <ul aria-expanded="false">
+                            @can('read-roles')
+                                <li><a href="{{ route('roles.index') }}">Index</a></li>
+                            @endcan
+                            @can('create-roles')
+                                <li><a href="{{ route('roles.create') }}">Create</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
             </ul>
         </div>
 

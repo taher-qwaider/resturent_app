@@ -24,6 +24,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Permissions</th>
+                                    <th>Roles</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
@@ -38,6 +39,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Permissions</th>
+                                    <th>Roles</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
@@ -72,6 +74,7 @@
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
                     {data: 'permissions_count', name: 'permissions_count', orderable: true, searchable: true},
+                    {data: 'roles_count', name: 'roles_count', orderable: true, searchable: true},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     {

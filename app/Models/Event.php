@@ -12,6 +12,7 @@ class Event extends Model
     use HasFactory, Translatable, SoftDeletes;
 
     public $translatedAttributes = ['title', 'desc'];
+    protected $with = ['image'];
 
 
     public function image(){

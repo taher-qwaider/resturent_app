@@ -13,6 +13,12 @@ use Yajra\DataTables\Facades\DataTables;
 class MealController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+//        $this->authorizeResource(Meal::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +27,13 @@ class MealController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-meals');
         return response()->view('cms.meal.index');
     }
     public function spacial()
     {
         //
+        $this->authorize('read-meals');
         return response()->view('cms.meal.special');
     }
     public function getMeals(Request $request){
@@ -43,12 +51,6 @@ class MealController extends Controller
     public function getSpacialMeals(Request $request){
         if ($request->ajax()) {
             return DataTables::of(Meal::where('status', 'spacial')->get())
-//                ->addIndexColumn()
-//                ->addColumn('action', function($row){
-//                    $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/meals/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
-//                    return $actionBtn;
-//                })
-//                ->rawColumns(['action'])
                 ->make(true);
         }
     }
@@ -61,6 +63,7 @@ class MealController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-meals');
         $categories = Category::all();
         return response()->view('cms.meal.create', [
             'categories'=> $categories
@@ -92,6 +95,7 @@ class MealController extends Controller
                 $meal->translateOrNew($local)->desc = $request->get('desc_' . $local);
             }
             $meal->price = $request->get('price');
+            $meal->status = '';
             $meal->category_id = $request->get('category');
             $meal->save();
             $meal = $meal->refresh();
@@ -127,6 +131,7 @@ class MealController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-meals');
         $meal = Meal::find($id);
         $categories = Category::all();
         return response()->view('cms.meal.edit', ['meal'=>$meal,'categories' =>$categories]);
@@ -199,6 +204,7 @@ class MealController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-meals');
         $isDeleted = Meal::destroy($id);
         return response()->json(['message' => $isDeleted ? "Meal Deleted successfully" : "Failed to Delete Meal"], $isDeleted ? 200:400);
     }

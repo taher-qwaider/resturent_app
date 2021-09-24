@@ -10,6 +10,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SocialMediaController extends Controller
 {
+    public function __construct()
+    {
+//        $this->authorizeResource(SocialMedia::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +23,7 @@ class SocialMediaController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-social-media');
         return response()->view('cms.social.index');
     }
     public function getSocialMedia(Request $request){
@@ -41,6 +47,7 @@ class SocialMediaController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-social-media');
         return response()->view('cms.social.create');
     }
 
@@ -90,6 +97,7 @@ class SocialMediaController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-social-media');
         $social =SocialMedia::find($id);
         return response()->view('cms.social.edit', ['social'=>$social]);
     }
@@ -129,7 +137,8 @@ class SocialMediaController extends Controller
      */
     public function destroy($id)
     {
-        //.
+        //
+        $this->authorize('delete-social-media');
         $isDeleted = SocialMedia::destroy($id);
         return response()->json(['message' => $isDeleted ? "Social Deleted successfully" : "Failed to Delete Social"], $isDeleted ? 200:400);
 

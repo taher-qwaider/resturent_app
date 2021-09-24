@@ -10,4 +10,8 @@ class Category extends Model
 {
     use HasFactory, Translatable;
     public $translatedAttributes = ['title'];
+
+    public function meals(){
+        return $this->hasMany(Meal::class);
+    }
 }

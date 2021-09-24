@@ -39,7 +39,7 @@
                                     <label>Select Category (select one):</label>
                                     <select class="form-control" id="category">
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            <option value="{{ $category->id }}" @if($category->id == $meal->category->id) selected @endif>{{ $category->title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -89,7 +89,7 @@
             formData.append('category', document.getElementById('category').value);
             formData.append('image', document.getElementById('image').files[0]);
 
-            update('/panel/cms/meals/'+{{ $meal->id }}+'/update', formData);
+            store('/panel/cms/meals/'+{{ $meal->id }}+'/update', formData);
         }
         function updateStatus(id){
             store('/panel/cms/meals/'+id+'/updateStatus', {});

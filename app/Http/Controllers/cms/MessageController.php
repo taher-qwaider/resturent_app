@@ -9,6 +9,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class MessageController extends Controller
 {
+    public function __construct()
+    {
+//        $this->authorizeResource(Message::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +22,7 @@ class MessageController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-messages');
         return response()->view('cms.message.index');
     }
     public function getMessages(Request $request){

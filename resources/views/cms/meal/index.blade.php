@@ -22,6 +22,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Category</th>
                                     <th>Desc</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
@@ -35,6 +36,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Category</th>
                                     <th>Desc</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
@@ -68,6 +70,7 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
+                    {data: 'category.title', name: 'category.title'},
                     {data: 'desc', name: 'desc'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},

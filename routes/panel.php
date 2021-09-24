@@ -63,6 +63,8 @@ Route::prefix('cms')->middleware('auth:user')->group(function (){
   Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update']);
   Route::get('user/{user}/permissions',[\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'index']);
   Route::post('user/{user}/permissions',[\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'store']);
+  Route::get('user/{user}/roles',[\App\Http\Controllers\cms\spatie\UserRoleController::class, 'index']);
+  Route::post('user/{user}/roles',[\App\Http\Controllers\cms\spatie\UserRoleController::class, 'store']);
 
   Route::get('logout', [\App\Http\Controllers\cms\auth\AuthController::class, 'logout'])->name('logout');
 

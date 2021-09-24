@@ -12,6 +12,12 @@ use Yajra\DataTables\Facades\DataTables;
 class EventController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+//        $this->authorizeResource(Event::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +26,7 @@ class EventController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-events');
         return response()->view('cms.events.index');
 
     }
@@ -44,6 +51,7 @@ class EventController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-events');
         return response()->view('cms.events.create');
     }
 
@@ -56,6 +64,7 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create-events');
         $validator = Validator($request->all(), [
             'title_en' => 'required|string|min:3',
             'title_ar' => 'required|string|min:3',
@@ -105,6 +114,7 @@ class EventController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-events');
         $event = Event::find($id);
         return response()->view('cms.events.edit', ['event'=>$event]);
     }
@@ -156,7 +166,8 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-events');
         $isDeleted = Event::destroy($id);
-        return response()->json(['message' => $isDeleted ? "Meal Deleted successfully" : "Failed to Delete Meal"], $isDeleted ? 200:400);
+        return response()->json(['message' => $isDeleted ? "Event Deleted successfully" : "Failed to Delete Event"], $isDeleted ? 200:400);
     }
 }

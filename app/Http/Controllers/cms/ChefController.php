@@ -13,6 +13,12 @@ use Yajra\DataTables\Facades\DataTables;
 class ChefController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+//        $this->authorizeResource(Chef::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +27,7 @@ class ChefController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-chefs');
         return response()->view('cms.chef.index');
 
     }
@@ -45,6 +52,7 @@ class ChefController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-chefs');
         return response()->view('cms.chef.create');
 
     }
@@ -58,7 +66,7 @@ class ChefController extends Controller
     public function store(Request $request)
     {
         //
-//        dd($request->all());
+        $this->authorize('create-chefs');
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
             'degree' => 'required|string|min:3',
@@ -113,6 +121,7 @@ class ChefController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-chefs');
         $chef = Chef::find($id);
         return response()->view('cms.chef.edit', ['chef' =>$chef]);
 
@@ -128,6 +137,7 @@ class ChefController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->authorize('edit-chefs');
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
             'degree' => 'required|string|min:3',
@@ -170,6 +180,7 @@ class ChefController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-chefs');
         $isDeleted = Chef::destroy($id);
         return response()->json(['message' => $isDeleted ? "Chef Deleted successfully" : "Failed to Delete Chef"], $isDeleted ? 200:400);
 

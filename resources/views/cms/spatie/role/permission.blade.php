@@ -64,7 +64,7 @@
 
     <script>
         function updatePermission(id){
-            axios.post('/panel/cms/role/'+id+'/permissions', {
+            axios.post('/panel/cms/role/'+ {!! $role->id !!}+'/permissions', {
                 permission_id:id,
                 // active:document.getElementById
             })

@@ -12,6 +12,11 @@ use Yajra\DataTables\Facades\DataTables;
 class ReviwController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+//        $this->authorizeResource(Review::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +25,7 @@ class ReviwController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-reviews');
         return response()->view('cms.review.index');
 
     }
@@ -44,6 +50,7 @@ class ReviwController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-reviews');
         return response()->view('cms.review.create');
     }
 
@@ -102,6 +109,7 @@ class ReviwController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-reviews');
         $review = Review::find($id);
         return response()->view('cms.review.edit', ['review' => $review]);
 
@@ -150,6 +158,7 @@ class ReviwController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-reviews');
         $isDeleted = Review::destroy($id);
         return response()->json(['message' => $isDeleted ? "Review Deleted successfully" : "Failed to Delete Review"], $isDeleted ? 200:400);
 

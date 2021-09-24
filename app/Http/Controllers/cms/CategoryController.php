@@ -9,6 +9,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+//        $this->authorizeResource(Category::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +22,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-categories');
         return response()->view('cms.category.index');
     }
     public function getCategories(Request $request){
@@ -40,6 +46,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-categories');
         return response()->view('cms.category.create');
     }
 
@@ -86,6 +93,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        $this->authorize('edit-categories');
         return response()->view('cms.category.edit', ['category'=>$category]);
     }
 
@@ -121,6 +129,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-categories');
         $isDeleted = Category::destroy($id);
         return response()->json(['message' => $isDeleted ? "category Deleted successfully" : "Failed to Delete Category"], $isDeleted ? 200:400);
     }

@@ -13,6 +13,11 @@ use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
     use FileUpload;
+
+    public function __construct()
+    {
+//        $this->authorizeResource(User::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,15 +26,21 @@ class UserController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-users');
         return response()->view('cms.user.index');
 
     }
     public function getUsers(Request $request){
         if ($request->ajax()) {
-            return DataTables::of(User::withCount('permissions')->get())
+            return DataTables::of(User::withCount(['permissions', 'roles'])->get())
                 ->addIndexColumn()
                 ->addColumn('permissions_count', function($row){
                     $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/user/$row->id/permissions' class='edit btn btn-success btn-sm'>$row->permissions_count / Permissions</a>";
+                    return $actionBtn;
+                })
+                ->addIndexColumn()
+                ->addColumn('roles_count', function($row){
+                    $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/user/$row->id/roles' class='edit btn btn-success btn-sm'>$row->roles_count / Roles</a>";
                     return $actionBtn;
                 })
                 ->addIndexColumn()
@@ -37,7 +48,7 @@ class UserController extends Controller
                     $actionBtn = "<a href='http://127.0.0.1:8000/panel/cms/users/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='preformedDelete($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
-                ->rawColumns(['action', 'permissions_count'])
+                ->rawColumns(['action', 'permissions_count', 'roles_count'])
                 ->make(true);
         }
     }
@@ -50,6 +61,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-users');
         return response()->view('cms.user.create');
 
     }
@@ -108,6 +120,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-users');
         $user = User::find($id);
         return response()->view('cms.user.edit', ['user' =>$user]);
     }
@@ -153,6 +166,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('destroy-users');
         $isDeleted = User::destroy($id);
         return response()->json(['message' => $isDeleted ? "User Deleted successfully" : "Failed to Delete User"], $isDeleted ? 200:400);
 

@@ -9,6 +9,12 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ReservationController extends Controller
 {
+
+    public function __construct()
+    {
+//        $this->authorizeResource(Reservation::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +23,7 @@ class ReservationController extends Controller
     public function index()
     {
         //
+        $this->authorize('read-reservations');
         return response()->view('cms.reservation.index');
 
     }
@@ -41,6 +48,7 @@ class ReservationController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-reservations');
         return response()->view('cms.reservation.create');
 
     }
@@ -100,6 +108,7 @@ class ReservationController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-reservations');
         $reservation = Reservation::find($id);
         return response()->view('cms.reservation.edit', ['reservation'=>$reservation]);
 
@@ -148,6 +157,7 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-reservations');
         $isDeleted = Reservation::destroy($id);
         return response()->json(['message' => $isDeleted ? "Reservation Deleted successfully" : "Failed to Delete Reservation"], $isDeleted ? 200:400);
 

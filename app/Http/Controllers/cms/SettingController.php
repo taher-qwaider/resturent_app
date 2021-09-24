@@ -9,6 +9,12 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SettingController extends Controller
 {
+
+    public function __construct()
+    {
+//        $this->authorizeResource(Setting::class, 'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +23,7 @@ class SettingController extends Controller
     public function index($subject)
     {
         //
+        $this->authorize('read-settings');
         return response()->view('cms.setting.index', ['subject' => $subject]);
     }
     public function getSettings(Request $request, $subject){
@@ -40,6 +47,7 @@ class SettingController extends Controller
     public function create()
     {
         //
+        $this->authorize('create-settings');
         return response()->view('cms.setting.create');
 
     }
@@ -91,6 +99,7 @@ class SettingController extends Controller
     public function edit($id)
     {
         //
+        $this->authorize('edit-settings');
         $setting = Setting::find($id);
         return response()->view('cms.setting.edit', ['setting'=>$setting]);
     }
@@ -132,6 +141,7 @@ class SettingController extends Controller
     public function destroy($id)
     {
         //
+        $this->authorize('delete-settings');
         $isDeleted = Setting::destroy($id);
         return response()->json(['message' => $isDeleted ? "Setting Deleted successfully" : "Failed to Delete Setting"], $isDeleted ? 200:400);
 
