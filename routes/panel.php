@@ -14,7 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('cms.dashboard');
+    $user_count = \App\Models\User::all()->count();
+    $categories_count = \App\Models\Category::all()->count();
+    $meals_count = \App\Models\Meal::all()->count();
+    $reservation_count = \App\Models\Reservation::all()->count();
+    return view('cms.dashboard', [
+        'users_count' => $user_count,
+        'categories_count' => $categories_count,
+        'meals_count' => $meals_count,
+        'reservations_count' => $reservation_count
+    ]);
 })->name('dashboard');
 
 Route::prefix('cms')->middleware('auth:user')->group(function (){

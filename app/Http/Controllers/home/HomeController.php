@@ -12,6 +12,7 @@ use App\Models\Review;
 use App\Models\Setting;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {

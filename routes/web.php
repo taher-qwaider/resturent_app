@@ -21,3 +21,5 @@ Route::get('restaurant/home', [\App\Http\Controllers\home\HomeController::class,
 
 Route::post('restaurant/reservation/store', [\App\Http\Controllers\home\ReservationController::class, 'store'])->name('home.reservation.store');
 Route::post('restaurant/message/store', [\App\Http\Controllers\home\MessageController::class, 'store'])->name('home.message.store');
+
+Route::get('restaurant/locale/{locale}', [\App\Http\Controllers\home\LangController::class, 'setLocal'])->name('lang.locale');

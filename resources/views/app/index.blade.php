@@ -1,4 +1,3 @@
-{{--{{ dd($generals) }}--}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +49,16 @@
 
       <div class="languages d-none d-md-flex align-items-center">
         <ul>
-          <li>En</li>
-          <li><a href="#">De</a></li>
+            @if(\Illuminate\Support\Facades\Session::get('locale') == 'en')
+                <li>En</li>
+                <li><a href="{{ route('lang.locale', 'ar') }}">Ar</a></li>
+            @elseif(\Illuminate\Support\Facades\Session::get('locale') == 'ar')
+                <li><a href="{{ route('lang.locale', 'en') }}">En</a></li>
+                <li>Ar</li>
+            @else
+                <li>En</li>
+                <li><a href="{{ route('lang.locale', 'ar') }}">Ar</a></li>
+            @endif
         </ul>
       </div>
     </div>
@@ -186,7 +193,7 @@
             <ul id="menu-flters">
                 <li data-filter="*" class="filter-active">All</li>
                 @foreach($categories as $category)
-                    <li data-filter=".filter-{{ $category->title }}">{{ $category->title }}</li>
+                    <li data-filter=".filter-{{ $category->title }}">{{ $category->translate(\Illuminate\Support\Facades\Session::get('locale'))->title }}</li>
                 @endforeach
             </ul>
           </div>
@@ -197,10 +204,10 @@
                 <div class="col-lg-6 menu-item filter-{{ $meal->category->title }}">
                     <img src="/storage/{{ $meal->image->path }}" class="menu-img" alt="">
                     <div class="menu-content">
-                        <a href="#">{{ $meal->name }}</a><span>{{ $meal->price }}</span>
+                        <a href="#">{{ $meal->translate(\Illuminate\Support\Facades\Session::get('locale'))->name }}</a><span>{{ $meal->price }}</span>
                     </div>
                     <div class="menu-ingredients">
-                        {{ $meal->desc }}
+                        {{ $meal->translate(\Illuminate\Support\Facades\Session::get('locale'))->desc }}
                     </div>
                 </div>
             @endforeach
@@ -327,12 +334,12 @@
                               <img src="/storage/{{ $event->image->path }}" class="img-fluid" alt="">
                           </div>
                           <div class="col-lg-6 pt-4 pt-lg-0 content">
-                              <h3>{{ $event->title }}</h3>
+                              <h3>{{ $event->translate(\Illuminate\Support\Facades\Session::get('locale'))->title }}</h3>
                               <div class="price">
                                   <p><span>{{ $event->price }}</span></p>
                               </div>
                               <p class="fst-italic">
-                                  {{ $event->desc }}
+                                  {{ $event->translate(\Illuminate\Support\Facades\Session::get('locale'))->desc }}
                               </p>
                           </div>
                       </div>
@@ -686,7 +693,11 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('app/assets/js/main.js') }}"></script>
+    <script>
+{{--        {{ \Illuminate\Support\Facades\App::setLocale('ar') }}--}}
+{{--        console.log('{!! \Illuminate\Support\Facades\Session::get('locale') !!}')--}}
 
+    </script>
 </body>
 
 </html>
