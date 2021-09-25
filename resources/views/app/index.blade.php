@@ -1,3 +1,4 @@
+{{ \Illuminate\Support\Facades\App::setLocale(\Illuminate\Support\Facades\Session::get('locale')) }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Restaurantly Bootstrap Template - Index</title>
+  <title>Restaurantly - Home</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -112,8 +113,8 @@
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
-          <h1>Welcome to <span>Restaurantly</span></h1>
-          <h2>Delivering great food for more than 18 years!</h2>
+          <h1>{{ __('webtexts.homeTitle') }}</h1>
+          <h2>{{ __('webtexts.homeSubTitle') }}</h2>
 
           <div class="btns">
             <a href="#menu" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
@@ -161,7 +162,7 @@
 
         <div class="section-title">
           <h2>Why Us</h2>
-          <p>Why Choose Our Restaurant</p>
+          <p>{{ __('webtexts.whyUsTitle') }}</p>
         </div>
 
         <div class="row">
@@ -185,7 +186,7 @@
 
         <div class="section-title">
           <h2>Menu</h2>
-          <p>Check Our Tasty Menu</p>
+          <p>{{ __('webtexts.menueTitle') }}</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -322,7 +323,7 @@
 
         <div class="section-title">
           <h2>Events</h2>
-          <p>Organize Your Events in our Restaurant</p>
+          <p>{{ __('webtexts.eventTitle') }}</p>
         </div>
 
         <div class="events-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
@@ -358,7 +359,7 @@
 
         <div class="section-title">
           <h2>Reservation</h2>
-          <p>Book a Table</p>
+          <p>{{ __('webtexts.reservationTitle') }}</p>
         </div>
 
         <form action="{{ route('home.reservation.store') }}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
@@ -410,7 +411,7 @@
 
         <div class="section-title">
           <h2>Testimonials</h2>
-          <p>What they're saying about us</p>
+          <p>{{ __('webtexts.reviewTitle') }}</p>
         </div>
 
         <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
@@ -443,7 +444,7 @@
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Gallery</h2>
-          <p>Some photos from Our Restaurant</p>
+          <p>{{ __('webtexts.albumTitle') }}</p>
         </div>
       </div>
 
@@ -470,7 +471,7 @@
 
         <div class="section-title">
           <h2>Chefs</h2>
-          <p>Our Proffesional Chefs</p>
+          <p>{{ __('webtexts.chefTitle') }}</p>
         </div>
 
         <div class="row">
